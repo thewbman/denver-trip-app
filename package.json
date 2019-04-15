@@ -1,0 +1,28 @@
+{
+  "name": "denver-trip-app",
+  "version": "1.0.0",
+  "author": "Wes Brown <thewbman@gmail.com>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewbman/denver-trip-app"
+  },
+  "dependencies": {
+    "@architect/architect": "^4.5.6",
+    "@architect/data": "^2.0.9",
+    "@architect/functions": "^1.12.1",
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "useTabs": false,
+    "trailingComma:": "es5",
+    "bracketSpacing": false,
+    "endOfLine": "lf",
+    "printWidth": 1000
+  },
+  "scripts": {
+    "develop": "npx nodemon --watch src/shared/,.arc -e md,css,js --exec npx sandbox"
+  }
+}
