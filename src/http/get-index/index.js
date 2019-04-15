@@ -21,27 +21,58 @@ exports.handler = async function http(req) {
   var bodyTop = '<h1>Denver Trip App</h1>'
   //bodyText += JSON.stringify(session, null, 2)
 
-  var bodyCenter = '<ul class="my-new-list"  />'
+  var bodyCenter = '<div id="allRoutes"></div><div id="allTrips"></div>'
+  var bodyBottom = '<div id="cookieData">'+JSON.stringify(session, null, 2)+'</div>'
 
-  var ajaxScript = `
+
+  var ajaxAllRoutesScript = `
 <script type="text/javascript">
 $.getJSON( "`+url('/routes')+`", function( data ) {
   var items = [];
-  $.each( data.Items, function( key, val ) {
-    items.push( "<li id='" + key + "'>" + val.route_id + "</li>" );
+  $.each( data, function( key, val ) {
+    items.push( "<li class='allRoutesItem' id='" + val.route_id + "' onclick='getTrips(this.id)'  >" + val.route_id + " - " + val.route_long_name + "</li>" );
   });
- 
+
+  $("#allRoutes").innerHTML = "";
   $( "<ul/>", {
-    "class": "my-new-list",
+    "class": "allRoutesList",
     html: items.join( "" )
-  }).appendTo( "body" );
+  }).appendTo( "#allRoutes" );
 });
 </script>
 `
 
 
+ var ajaxClickRouteScript = `
+<script type="text/javascript">
+//$('.allRoutesItem').click(function() {
+function getTrips(str) {
 
-  var bodyText = bodyTop+bodyCenter+ajaxScript
+//var str = $(this).text();
+console.log(str)
+
+$.getJSON( "`+url('/route/')+`"+str, function( data ) {
+  var items = [];
+  $.each( data, function( key, val ) {
+    items.push( "<li class='allTripsItem' id='" + val.trip_id + "'>" + val.trip_id + " - " + val.route_id + "</li>" );
+  });
+
+  $("#allTrips").innerHTML = "";
+  $( "<ul/>", {
+    "class": "allTripsList",
+    html: items.join( "" )
+  }).appendTo( "#allTrips" );
+});
+
+
+
+//});
+};
+</script>
+`
+
+  var headText = '<title>Denver Trip App</title>'+jqueryLoad
+  var bodyText = bodyTop + bodyCenter + bodyBottom + ajaxAllRoutesScript + ajaxClickRouteScript
 
 
 
@@ -50,7 +81,7 @@ $.getJSON( "`+url('/routes')+`", function( data ) {
   return {
     cookie,
     headers: {'content-type': 'text/html; charset=utf8'},
-    body: layout('<title>Denver Trip App</title>'+jqueryLoad,bodyText)
+    body: layout(headText,bodyText)
   }
 }
 

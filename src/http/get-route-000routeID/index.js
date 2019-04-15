@@ -1,47 +1,21 @@
 // @architect/functions enables secure sessions, express-style middleware and more
-// let arc = require('@architect/functions')
+let arc = require('@architect/functions')
+let data = require('@architect/data')
+//let sortBy = require('lodash.sortby');
 // let url = arc.http.helpers.url
 
-exports.handler = async function http(req) {
-  console.log(req)
-  return {
-    headers: {'content-type': 'text/html; charset=utf8'},
-    body: '<h1>Hello world!</h1>'
-  }
+async function handler(req, res) {
+  console.log(JSON.stringify(req, null, 2))
+  let routeID = req.params.routeID
+  let result = await data.trip.query({
+    KeyConditionExpression: 'route_id = :routeID',
+    ExpressionAttributeValues: {
+      ':routeID': routeID
+      }
+    })
+  res({
+    json: result.Items
+  })
 }
 
-// Example responses
-
-/* Forward requester to a new path
-exports.handler = async function http(request) {
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(request)
-  }
-  return {
-    status: 302,
-    location: '/staging/about',
-  }
-}
-*/
-
-/* Successful resource creation, CORS enabled
-exports.handler = async function http(request) {
-  return {
-    status: 201,
-    type: 'application/json',
-    body: JSON.stringify({ok: true}),
-    cors: true,
-  }
-}
-*/
-
-/* Deliver client-side JS
-exports.handler = async function http(request) {
-  return {
-    type: 'text/javascript',
-    body: 'console.log("Hello world!")',
-  }
-}
-*/
-
-// Learn more: https://arc.codes/guides/http
+exports.handler = arc.http(handler)
