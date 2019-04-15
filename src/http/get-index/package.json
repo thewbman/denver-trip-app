@@ -1,0 +1,7 @@
+{
+  "name": "denvertrip-get-index",
+  "dependencies": {
+    "@architect/data": "^2.0.15",
+    "@architect/functions": "^3.0.2"
+  }
+}
