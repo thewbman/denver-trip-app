@@ -6,15 +6,15 @@ let data = require('@architect/data')
 
 async function handler(req, res) {
   console.log(JSON.stringify(req, null, 2))
-  let routeID = req.params.routeID
-  let result = await data.trip.query({
-    KeyConditionExpression: 'route_id = :routeID',
+  let stopID = req.params.stopID
+  let result = await data.stop.query({
+    KeyConditionExpression: 'stop_id = :stopID',
     ExpressionAttributeValues: {
-      ':routeID': routeID
+      ':stopID': stopID
       }
     })
   res({
-    json: result.Items.sort(function(a,b) { if(a.trip_id < b.trip_id) return -1; return 1; } )
+    json: result.Items
   })
 }
 

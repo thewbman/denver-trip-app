@@ -5,7 +5,8 @@ denvertrip
 get /
 get /routes
 get /route/:routeID
-
+get /trip/:tripID
+get /stop/:stopID
 
 
 @static
@@ -20,4 +21,9 @@ trip
   route_id *String
   trip_id **String
 
+stop
+  stop_id *String
 
+stoptime
+  trip_id *String
+  stop_id **String
