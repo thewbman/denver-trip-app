@@ -1,0 +1,10 @@
+version: 0.2
+
+phases:
+  build:
+    commands: 
+      - wget https://bvdc2uahu2.execute-api.us-west-2.amazonaws.com/staging/route/FF7
+artifacts:
+  files:
+    - '**/*'
+  name: myname-$(date +%Y-%m-%d)
