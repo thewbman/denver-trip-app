@@ -7,6 +7,7 @@ get /routes
 get /route/:routeID
 get /trip/:tripID
 get /stop/:stopID
+get /nexttrip/:stopID
 
 
 @static

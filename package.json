@@ -8,12 +8,12 @@
     "url": "https://github.com/thewbman/denver-trip-app"
   },
   "dependencies": {
-    "@architect/architect": "^4.5.6",
+    "@architect/architect": "^5.7.0",
     "@architect/data": "^2.0.9",
     "@architect/functions": "^1.12.1",
     "async": "^2.6.2",
-    "aws-sdk": "^2.437.0",
-    "csv-parse": "^4.4.0"
+    "aws-sdk": "^2.440.0",
+    "csv-parse": "^4.4.1"
   },
   "prettier": {
     "semi": false,
