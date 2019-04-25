@@ -5,8 +5,8 @@ phases:
     commands: 
       - mkdir build
       - cd build
-      - wget https://bvdc2uahu2.execute-api.us-west-2.amazonaws.com/staging/route/FF7
-      - wget https://bvdc2uahu2.execute-api.us-west-2.amazonaws.com/staging/route/FF1
+      - wget $(staging_api)/route/FF7
+      - wget $(staging_api)/route/FF1
 artifacts:
   files:
     - 'build/**/*'
