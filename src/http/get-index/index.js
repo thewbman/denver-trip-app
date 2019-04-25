@@ -81,7 +81,7 @@ console.log(str)
 $.getJSON( "`+url('/trip/')+`"+str, function( data ) {
   var items = [];
   $.each( data, function( key, val ) {
-    items.push( "<li class='allStopsItem' id='" + val.stop_id + "'  onclick='getSingleStop(this.id)' >SEQ" + val.stop_sequence + " to stop " + val.stop_id + " at " + val.arrival_time + "</li>" );
+    items.push( "<li class='allStopsItem' id='" + val.stop_id + "'  onclick='getSingleStop(this.id)' >SEQ" + val.stop_sequence + " to stop " + val.stop.stop_name + " at " + val.arrival_time + "</li>" );
   });
 
   $("#allStops").empty();

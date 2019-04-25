@@ -13,6 +13,23 @@ async function handler(req, res) {
       ':tripID': tripID
       }
     })
+
+  for(var i = 0, len = result.Items.length; i < len; i++) {
+    let stopID = result.Items[i].stop_id
+    let stopresult = await data.stop.query({
+      KeyConditionExpression: 'stop_id = :stopID',
+      ExpressionAttributeValues: {
+        ':stopID': stopID
+        }
+      })
+      
+    if(stopresult.Items.length > 0) {
+      result.Items[i].stop = stopresult.Items[0];
+    }
+  }
+
+
+  
   res({
     json: result.Items.sort(function(a,b) { if(a.arrival_time < b.arrival_time) return -1; return 1; } )
   })
