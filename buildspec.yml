@@ -5,8 +5,8 @@ phases:
     commands: 
       - mkdir build
       - cd build
-      - wget $(staging_api)/route/FF7
-      - wget $(staging_api)/route/FF1
+      - wget $staging_api/route/FF7
+      - wget $staging_api/route/FF1
 artifacts:
   files:
     - 'build/**/*'
