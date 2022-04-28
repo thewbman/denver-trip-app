@@ -11,7 +11,7 @@
     "@architect/architect": "^5.7.0",
     "@architect/data": "^2.0.17",
     "@architect/functions": "^1.12.1",
-    "async": "^2.6.2",
+    "async": "^2.6.4",
     "aws-sdk": "^2.814.0",
     "csv-parse": "^4.4.6"
   },
